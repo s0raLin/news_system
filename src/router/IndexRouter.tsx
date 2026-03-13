@@ -10,7 +10,7 @@ export default function IndexRouter() {
       <Routes>
         <Route path="/login" element={<Login />} />
         {/* 如果未授权就去登录 */}
-        <Route path="/" element={token ? <NewsSandBox /> : <Login />}></Route>
+        <Route path="/*" element={token ? <NewsSandBox /> : <Login />}></Route>
       </Routes>
     </HashRouter>
   );
