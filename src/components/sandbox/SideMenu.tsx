@@ -1,6 +1,16 @@
-
+import { List, ListItem, ListGroup } from "actify";
 export default function SideMenu() {
+  const list = ["HTML", "Tailwind CSS", "Vue"];
   return (
-    <div>SideMenu</div>
-  )
+    <List>
+      {list.map((item) => (
+        <ListItem key={item}>{item}</ListItem>
+      ))}
+      <ListGroup label="React">
+        {["Next.js", "Floating-UI", "Framer Motion", "Actify"].map((item) => (
+          <ListItem key={item}>{item}</ListItem>
+        ))}
+      </ListGroup>
+    </List>
+  );
 }

@@ -1,0 +1,15 @@
+.news-sandbox-layout {
+  display: flex;
+  min-height: 100vh;
+  
+  .main-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+
+  .pageContent {
+    flex-grow: 1;
+    padding: 16px;
+  }
+}
