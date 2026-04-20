@@ -6,28 +6,30 @@ import UserList from "./user-manage/UserList";
 import RoleList from "./right-manage/RoleList";
 import RightList from "./right-manage/RightList";
 import NoPermission from "./no-permission/NoPermission";
-import "./NewsSandBox.scss";
-
-import { Box } from '@mui/material';
-
-
+// import "./NewsSandBox.scss";
+import { Layout, theme } from "antd";
+import { Content } from "antd/es/layout/layout";
+import { useState } from "react";
 
 export default function NewsSandBox() {
-
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <Box className="news-sandbox-layout">
-      
-      {/* 左侧菜单 */}
-      <SideMenu />
-
-      {/* 右侧区域 */}
-      <Box className="main-content">
-        
-        {/* 顶部导航 */}
-        <TopHeader />
-
-        {/* 页面内容 */}
-        <Box className="page-content">
+    <Layout>
+      <SideMenu collapsed={collapsed} />
+      <Layout>
+        <TopHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: "calc(100vh - 64px)",
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/user-manage/list" element={<UserList />} />
@@ -37,10 +39,8 @@ export default function NewsSandBox() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="*" element={<NoPermission />} />
           </Routes>
-        </Box>
-
-      </Box>
-
-    </Box>
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
