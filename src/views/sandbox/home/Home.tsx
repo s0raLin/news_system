@@ -1,9 +1,15 @@
-
+import { Button } from "antd";
+import axios from "axios";
 
 export default function Home() {
+  const ajax = () => {
+    axios.get("http://localhost:3000/posts").then(res=> {
+      console.log(res.data)
+    })
+  }
   return (
     <div>
-      Home
+      <Button type="primary" onClick={ajax}>Button</Button>
     </div>
   )
 }
